@@ -27,9 +27,11 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTodos: () => ({
-    type: 'FETCH_TODOS_REQUEST'
-  })
+  fetchTodos: () => {
+    dispatch({
+      type: 'FETCH_TODOS_REQUEST'
+    })
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoListContainer)
