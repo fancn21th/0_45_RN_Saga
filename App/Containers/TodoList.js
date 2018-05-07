@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TodoList from '../Components/TodoList'
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state.todos,
+class TodoListContainer extends Component {
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    const { fetchTodos } = this.props
+    fetchTodos()
+  }
+
+  render() {
+    const { todos } = this.props
+    return (
+      <TodoList
+        todos={todos}
+      />
+    )
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//     onToggleTodo(id){
-//         dispatch(toggleTodo(id))
-//     }
-// })
+const mapStateToProps = (state) => ({
+  todos: state.todos
+})
 
-export default connect(mapStateToProps, null)(TodoList)
+const mapDispatchToProps = (dispatch) => ({
+  fetchTodos: () => ({
+    type: 'FETCH_TODOS_REQUEST'
+  })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoListContainer)

@@ -10,7 +10,7 @@ const TodoList = ({todos}) => (
   <Container>
     <Content>
       {
-        todos.map(todo => (
+        todos && todos.map(todo => (
           <Card key={todo.id}>
             <Text>{todo.title}</Text>
           </Card>
