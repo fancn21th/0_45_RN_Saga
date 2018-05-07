@@ -1,25 +1,16 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Toast, Button, Text } from 'native-base';
-export default class ToastExample extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showToast: false
-    }
-  }
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import configureStore from '../Store'
+import TodoList from './TodoList'
+
+export default class App extends Component {
   render() {
     return (
-      <Container>
-        <Header />
-        <Content padder>
-          <Button onPress={()=> Toast.show({
-            text: 'Wrong password!',
-            buttonText: 'Okay'
-          })}>
-            <Text>Toast</Text>
-          </Button>
-        </Content>
-      </Container>
-    );
+      <Provider store={configureStore()}>
+        <TodoList></TodoList>
+      </Provider>
+    )
   }
 }
+
+
